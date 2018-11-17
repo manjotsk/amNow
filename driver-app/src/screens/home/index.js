@@ -5,11 +5,12 @@ import Swipeout from 'react-native-swipeout';
 import { Color, Metrics } from '../../themes'
 import styles from './styles'
 import { InfiniteAnimation } from '../../animations' 
+import { Actions } from 'react-native-router-flux';
 
 const swipeoutBtns = [
     {
       text: 'Accept',
-      onPress: ()=>alert('Hello'),
+      onPress: ()=>Actions.maps(),
       backgroundColor: Color.green
     },
     {
