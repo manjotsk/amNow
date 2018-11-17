@@ -4,7 +4,7 @@
 
 import React from 'react';
 import LottieView from 'lottie-react-native';
-import {Assets} from '../themes'
+import {Assets} from '../../themes'
 
 export default class InfiniteAnimation extends React.Component {
   componentDidMount() {
@@ -22,7 +22,7 @@ export default class InfiniteAnimation extends React.Component {
           height: this.props.height?this.props.height:200,
           width: this.props.width?this.props.width:200
         }}
-        loop={false}
+        loop={true}
       />
     )
   }

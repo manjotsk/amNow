@@ -2,10 +2,11 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import Swipeout from 'react-native-swipeout';
 
-import { Color } from '../../themes'
+import { Color, Metrics } from '../../themes'
 import styles from './styles'
+import { InfiniteAnimation } from '../../animations' 
 
-var swipeoutBtns = [
+const swipeoutBtns = [
     {
       text: 'Accept',
       onPress: ()=>alert('Hello'),
@@ -34,6 +35,7 @@ class Home extends React.Component {
                         <Text style={styles.text}>1 KM</Text>
                     </View>
                 </Swipeout>
+                <InfiniteAnimation source={'heartrate'} width={Metrics.WIDTH}/>
             </View>
         )
     }
