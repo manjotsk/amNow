@@ -21,7 +21,7 @@ export const userApi = {
         })
             .then(response => {
                 store.dispatch(loginUserSuccessful('Success'))
-                Actions.afterLogin()
+                Actions.home()
             }).catch(err=> {
                 store.dispatch(loginUserFailed('Login Failed'))
             })
