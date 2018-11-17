@@ -12,7 +12,7 @@ import {connect} from 'react-redux'
 import {Actions, ActionConst} from  'react-native-router-flux'
 
 import { Loader } from '../../components'
-import assets from '../../themes/assets'
+import {Assets} from '../../themes'
 import styles from './styles'
 import {userApi} from '../../api/userApi'
 
@@ -39,7 +39,7 @@ class RegisterScreen extends React.Component {
 
     render() {
         return(
-            <ImageBackground style={styles.container} source={assets['background']}>
+            <ImageBackground style={styles.container} source={Assets['background']}>
                 {
                     this.state.login?
                         <View style={styles.subView}>
