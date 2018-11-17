@@ -15,7 +15,7 @@ export default class MapScreen extends React.Component {
     }
 
     componentDidMount () {
-        this._getLocationAsync();
+        this._getLocationAsync()
     }
 
     _getLocationAsync = async () => {
@@ -23,22 +23,19 @@ export default class MapScreen extends React.Component {
         if (status !== 'granted') {
           this.setState({
             locationResult: 'Permission to access location was denied',
-          });
+          })
         } else {
-          this.setState({ hasLocationPermissions: true });
+          this.setState({ hasLocationPermissions: true })
         }
      
-        let location = await Location.getCurrentPositionAsync({});
-        this.setState({ locationResult: location });
-        
-        // Center the map on the location we just fetched.
-         this.setState({mapRegion: { latitude: location.coords.latitude, longitude: location.coords.longitude, latitudeDelta: 0.0922, longitudeDelta: 0.0421 }});
-       };
+        const location = await Location.watchPositionAsync({
+            enableHighAccuracy: true,
+            distanceInterval: 3
+          }, newLocation=>this.setState({locationResult:newLocation}))
+       }
 
   render() {
-
-    console.log(this.state.locationResult?this.state.locationResult.coords.latitude:null)
-
+      
     return (
       <React.Fragment>
         {this.state.locationResult?
