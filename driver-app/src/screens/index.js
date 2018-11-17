@@ -1,7 +1,9 @@
 import RegisterScreen from './registerScreen'
-import AfterLogin from './afterLogin'
+import Home from './home'
+import MapScreen from './mapScreen'
 
 export {
     RegisterScreen,
-    AfterLogin
+    Home,
+    MapScreen
 }

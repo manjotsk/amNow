@@ -1,9 +1,9 @@
 {
-  "devToolsPort": 19004,
-  "expoServerPort": 19005,
-  "packagerPort": 19006,
-  "packagerPid": 29487,
-  "expoServerNgrokUrl": "https://yz-adt.simbaquartz.nodative-app.exp.direct",
-  "packagerNgrokUrl": "https://packager.yz-adt.simbaquartz.nodative-app.exp.direct",
-  "ngrokPid": 29579
+  "packagerPort": 19001,
+  "packagerPid": 18224,
+  "expoServerPort": 19000,
+  "expoServerNgrokUrl": "https://3f-hfe.manjotsingh.patient-app.exp.direct",
+  "packagerNgrokUrl": "https://packager.3f-hfe.manjotsingh.patient-app.exp.direct",
+  "ngrokPid": 15928,
+  "devToolsPort": 19002
 }
