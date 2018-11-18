@@ -7,8 +7,16 @@ import {
 const INITIAL_STATE = {
     loading: false,
     message: '',
-    response: null
+    response: null,
+    token: null
 }
+
+export const saveToken =token=>({
+    type: SAVE_TOKEN,
+    token
+})
+
+const SAVE_TOKEN = 'SAVE_TOKEN'
 
 export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
@@ -32,6 +40,12 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 loading: false,
                 response: action.payload
+            }
+        
+        case SAVE_TOKEN:
+            return {
+                ...state,
+                token: action.token
             }
 
         default:

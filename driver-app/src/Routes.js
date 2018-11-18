@@ -13,10 +13,10 @@ class Routes extends React.Component {
     render = () =>
         <Router>
             <Stack key="root" hideNavBar>
-              <Scene key="register" component={RegisterScreen} />
+              <Scene key="register" component={RegisterScreen} initial/>
               <Scene key="home" component={Home} />
               <Scene key="maps" component={MapScreen} />
-              <Scene key="symptom" component={SymptomScreen} initial/>
+              <Scene key="symptom" component={SymptomScreen} />
             </Stack>
         </Router>
   }

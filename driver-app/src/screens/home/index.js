@@ -9,6 +9,7 @@ import styles from './styles'
 import { InfiniteAnimation } from '../../animations' 
 import { Header } from '../../components'
 import { userApi } from '../../api/userApi';
+import { driverApi } from '../../api/driverApi';
  
 const swipeoutBtns = [
     {
@@ -24,6 +25,12 @@ const swipeoutBtns = [
   ]
 
 class Home extends React.Component {
+
+    componentDidMount() {
+        const {id, token} =this.props
+        driverApi.saveToken(id, token)
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -51,7 +58,8 @@ class Home extends React.Component {
 }
 
 const mapStateToProps =state=> ({
-    // id: state.user.response.user.email
+    id: state.user.response.user.uid,
+    token: state.symptom.token
 })
 
 export default connect(mapStateToProps)(Home)

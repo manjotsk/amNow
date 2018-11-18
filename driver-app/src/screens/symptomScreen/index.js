@@ -16,15 +16,16 @@ import { Header } from '../../components'
 import { Loader } from '../../components'
 import {Assets} from '../../themes'
 import styles from './styles'
+import { driverApi } from '../../api/driverApi';
 
 class SymptomScreen extends React.Component {
 
     state = {
-        searching: true
+        searching: true,
+        symptoms: ''
     }
 
     render() {
-        console.log(this.props.message)
         return(
             <ImageBackground style={styles.container} source={Assets['background']}>
                 <Header
@@ -44,7 +45,8 @@ class SymptomScreen extends React.Component {
                     <TouchableOpacity
                         disabled={!this.state.symptoms}
                         onPress={()=>{
-                            alert('h')
+                            const {symptoms} = this.state
+                            driverApi.getAid(symptoms.split(','))
                         }}
                         style={styles.button}
                         >
@@ -65,7 +67,7 @@ class SymptomScreen extends React.Component {
 }
 
 const mapStateToProps =state=> ({
-
+    loading: state.symptom.laoding
 })
 
 export default connect(mapStateToProps)(SymptomScreen)
