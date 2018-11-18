@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 import { getStatusBarHeight } from 'react-native-status-bar-height'
 
-import { Metrics, Fonts } from '../../themes'
+import { Metrics, Fonts, Color } from '../../themes'
 import { center } from '../../themes/globalStyles'
 
 export default StyleSheet.create({
@@ -14,11 +14,13 @@ export default StyleSheet.create({
     shadowRadius: 10,
     shadowOpacity: 0.4,
     elevation: 4,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    position: 'absolute',
+    top: 0
 },
  iconButton: {
     ...center,
-    flex: 1
+    paddingLeft: 5
  },
  picker: {
     ...center,
@@ -29,12 +31,24 @@ export default StyleSheet.create({
     color: '#666'
  },
  dropDown: {
-    flex: 5,
     alignItems: 'flex-end',
-    padding: 10
+    padding: 10,
+    height: 35,
+    alignSelf: 'center',
+    backgroundColor: Color.buttonColor
  },
  text: {
      fontSize: Fonts.moderateScale(15),
      color: '#666'
+ },
+ heading: {
+     flex: 1,
+     justifyContent: 'center'
+ },
+ headingText: {
+    padding: 7,
+    ...center,
+    fontSize: 17,
+    color: '#666'
  }
 })

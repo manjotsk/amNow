@@ -16,15 +16,12 @@ export default class Header extends React.Component {
             <TouchableOpacity style={styles.iconButton} onPress={()=>Actions.drawerOpen()}>
                 <Icon name='ios-menu' style={styles.icon}/>
             </TouchableOpacity>
-            <View style={styles.dropDown}>
-                <Text style={styles.text}>{moment().format('MMM DD')}</Text>
+            <View style={styles.heading}>
+                <Text style={styles.headingText}>{this.props.heading}</Text>
             </View>
-            <View style={styles.iconButton}>
-                <Icon name='md-calendar' style={styles.icon}/>
-            </View>
-            <View style={styles.iconButton}>
-                <Icon name='md-more' style={styles.icon}/>
-            </View>
+            <TouchableOpacity style={styles.dropDown} onPress={this.props.onPress}>
+                <Text style={styles.text}>{this.props.buttonText}</Text>
+            </TouchableOpacity>
             </View>
         )
     }
