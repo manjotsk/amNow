@@ -12,7 +12,7 @@ export const userApi = {
         firebase.auth().createUserWithEmailAndPassword(email, password)
                         .then(user=>{
                             store.dispatch(loginUserSuccessful(user))
-                            Actions.home({type: ActionConst.reset})
+                            Actions.home({type: ActionConst.RESET})
                         })
                         .catch(err=> {
                             console.log('h')
@@ -24,8 +24,17 @@ export const userApi = {
         firebase.auth().signInWithEmailAndPassword(email, password)
                 .then(user=>{
                     store.dispatch(loginUserSuccessful(user))
-                    Actions.home({type: ActionConst.reset})
+                    Actions.home({type: ActionConst.RESET})
                 })
                 .catch(err=> store.dispatch(loginUserFailed('Login Failed, Try Again')))
+    },
+    logout:() => {
+        firebase.auth().signOut()
+        .then(()=> {
+            Actions.register({type: ActionConst.RESET})
+        })
+        .catch(error=> {
+            console.log(error)
+        });
     }
 }
