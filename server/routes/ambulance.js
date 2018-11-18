@@ -23,7 +23,11 @@ router.get("/", function(req, res, next) {
           }
         );
         if (dist < req.query.distance) {
-          newArray.push({ ambuName, dist });
+          newArray.push({
+            ambuName,
+            dist,
+            coordinates: snapshot.val()[ambuName].coordinates
+          });
           // console.log(ambuName);
         }
 
