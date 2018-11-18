@@ -15,12 +15,19 @@ import { Loader } from '../../components'
 import {Assets} from '../../themes'
 import styles from './styles'
 import {userApi} from '../../api/userApi'
+import store from '../../store/store';
+import { loginUserFailed } from '../../actions/userActions';
 
 
 class RegisterScreen extends React.Component {
 
     state = {
         login: true
+    }
+
+    validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
     }
 
     isRegister() {
@@ -38,16 +45,18 @@ class RegisterScreen extends React.Component {
     }
 
     render() {
+        console.log(this.props.message)
         return(
             <ImageBackground style={styles.container} source={Assets['background']}>
                 {
                     this.state.login?
                         <View style={styles.subView}>
+                            <Text style={styles.error}>{this.props.message}</Text>
                             <TextInput
                                 style={styles.input}
-                                onChangeText={(username) => this.setState({username})}
-                                value={this.state.username}
-                                placeholder='Username'
+                                onChangeText={(email) => this.setState({email})}
+                                value={this.state.email}
+                                placeholder='Email'
                                 placeholderTextColor='black'
                                 />
                             <TextInput
@@ -58,10 +67,13 @@ class RegisterScreen extends React.Component {
                                 placeholderTextColor='black'
                                 secureTextEntry
                                 />
-                            <TouchableOpacity 
+                            <TouchableOpacity
+                                disabled={!this.state.email||!this.state.password}
                                 onPress={()=>{
-                                    const {username, password} = this.state
-                                    userApi.login(username, password)
+                                    const {email, password} = this.state
+                                    if(!this.validateEmail(email))
+                                        return store.dispatch(loginUserFailed('Email is not valid'))
+                                    userApi.login(email, password)
                                 }}
                                 style={styles.button}
                                 >
@@ -72,19 +84,13 @@ class RegisterScreen extends React.Component {
                                 show = {true}
                                 />
                                 :
-                                <Text style={styles.text}>Submit</Text>}
+                                <Text style={styles.text}>Login</Text>}
                             </TouchableOpacity>
                             <KeyboardSpacer/>
                             {this.isRegister()}
                         </View>:
                         <View style={styles.subView}>
-                            <TextInput
-                                style={styles.input}
-                                onChangeText={(name) => this.setState({name})}
-                                value={this.state.name}
-                                placeholder='Name'
-                                placeholderTextColor='black'
-                                />
+                            <Text style={styles.error}>{this.props.message}</Text>
                             <TextInput
                                 style={styles.input}
                                 onChangeText={(email) => this.setState({email})}
@@ -92,13 +98,6 @@ class RegisterScreen extends React.Component {
                                 placeholder='Email'
                                 placeholderTextColor='black'
                                 autoCapitalize = 'none'
-                                />
-                            <TextInput
-                                style={styles.input}
-                                onChangeText={(username) => this.setState({username})}
-                                value={this.state.username}
-                                placeholder='Username'
-                                placeholderTextColor='black'
                                 />
                             <TextInput
                                 style={styles.input}
@@ -117,12 +116,14 @@ class RegisterScreen extends React.Component {
                                 secureTextEntry
                                 />
                             <TouchableOpacity 
+                                disabled={!this.state.email||!this.state.password||!this.state.password1}
                                 onPress={()=>{
-                                    alert('Submit Pressed')
+                                    const { email, password, password1 } = this.state
+                                    password===password1?userApi.register(email, password):store.dispatch(loginUserFailed('Password Mismatch'))
                                 }}
                                 style={styles.button}
                                 >
-                                {this.state.loading?<ActivityIndicator color="white"/>:<Text style={styles.text}>Submit</Text>}
+                                {this.state.loading?<ActivityIndicator color="white"/>:<Text style={styles.text}>Register</Text>}
                             </TouchableOpacity>
                             <KeyboardSpacer/>
                             {this.isRegister()}
@@ -134,7 +135,8 @@ class RegisterScreen extends React.Component {
 }
 
 const mapStateToProps =state=> ({
-    loading: state.user.loading
+    loading: state.user.loading,
+    message: state.user.message
 })
 
 export default connect(mapStateToProps)(RegisterScreen)

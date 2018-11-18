@@ -1,29 +1,40 @@
-import axios from 'axios'
-import { API_HOST } from 'react-native-dotenv'
-import { Actions } from 'react-native-router-flux'
+import { Actions, ActionConst } from 'react-native-router-flux'
 
 
 import store from '../store/store'
 import { loginUserInitiated, loginUserSuccessful, loginUserFailed } from '../actions/userActions'
+import firebase from './firebase' 
 
 export const userApi = {
 
-    login: (username, password) => {
+    register: (email, password) => {
         store.dispatch(loginUserInitiated())
-        return axios({
-            method: 'post',
-            url: `${API_HOST}/nodative/api/v1/users/login`,
-            data: {
-                'username': username,
-                'password': password
-            },
-            timeout: 15000
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+                        .then(user=>{
+                            store.dispatch(loginUserSuccessful(user))
+                            Actions.home({type: ActionConst.RESET})
+                        })
+                        .catch(err=> {
+                            console.log('h')
+                            loginUserFailed('Register Failed, Try Again')
+                        })
+    },
+    login:(email, password) => {
+        store.dispatch(loginUserInitiated())
+        firebase.auth().signInWithEmailAndPassword(email, password)
+                .then(user=>{
+                    store.dispatch(loginUserSuccessful(user))
+                    Actions.home({type: ActionConst.RESET})
+                })
+                .catch(err=> store.dispatch(loginUserFailed('Login Failed, Try Again')))
+    },
+    logout:() => {
+        firebase.auth().signOut()
+        .then(()=> {
+            Actions.register({type: ActionConst.RESET})
         })
-            .then(response => {
-                store.dispatch(loginUserSuccessful('Success'))
-                Actions.home()
-            }).catch(err=> {
-                store.dispatch(loginUserFailed('Login Failed'))
-            })
+        .catch(error=> {
+            console.log(error)
+        });
     }
 }
