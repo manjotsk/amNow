@@ -44,6 +44,11 @@ class MapScreen extends React.Component {
       console.log(this.props.id)
     return (
       <React.Fragment>
+        <Header
+                    buttonText = "Self Help"
+                    heading = "Home"
+                    onPress = {()=>Actions.symptom()}
+                    />
         {this.state.locationResult?
         <MapView
         style={{ flex: 1 }}
