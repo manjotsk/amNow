@@ -1,9 +1,9 @@
 {
-  "devToolsPort": 19004,
-  "expoServerPort": 19005,
-  "packagerPort": 19006,
-  "packagerPid": 24985,
+  "devToolsPort": 19003,
+  "expoServerPort": 19001,
+  "packagerPort": 19004,
+  "packagerPid": 20921,
   "expoServerNgrokUrl": "https://yz-adt.simbaquartz.driver-app.exp.direct",
   "packagerNgrokUrl": "https://packager.yz-adt.simbaquartz.driver-app.exp.direct",
-  "ngrokPid": 25129
+  "ngrokPid": 21677
 }
