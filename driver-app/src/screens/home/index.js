@@ -1,13 +1,15 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import Swipeout from 'react-native-swipeout';
+import {connect} from 'react-redux'
+import { Actions } from 'react-native-router-flux';
 
 import { Color, Metrics } from '../../themes'
 import styles from './styles'
 import { InfiniteAnimation } from '../../animations' 
-import { Actions } from 'react-native-router-flux';
-import {connect} from 'react-redux'
-
+import { Header } from '../../components'
+import { userApi } from '../../api/userApi';
+ 
 const swipeoutBtns = [
     {
       text: 'Accept',
@@ -25,6 +27,11 @@ class Home extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <Header
+                buttonText = "Log Out"
+                heading = "Home"
+                onPress = {()=>userApi.logout()}
+                />
                 <View style={styles.swipeHeading}>
                     <Text style={styles.text}>Sr. No</Text>
                     <Text style={styles.text}>Location</Text>
@@ -44,7 +51,7 @@ class Home extends React.Component {
 }
 
 const mapStateToProps =state=> ({
-    id: state.user.response.user.email
+    // id: state.user.response.user.email
 })
 
 export default connect(mapStateToProps)(Home)
