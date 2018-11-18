@@ -13,7 +13,7 @@ export const loginUserFailed =message=> ({
     message
 })
 
-export const loginUserSuccessful =message=> ({
+export const loginUserSuccessful =payload=> ({
     type: LOGIN_USER_SUCCESSFUL,
-    message
+    payload
 })

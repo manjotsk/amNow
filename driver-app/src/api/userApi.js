@@ -1,4 +1,4 @@
-import { Actions } from 'react-native-router-flux'
+import { Actions, ActionConst } from 'react-native-router-flux'
 
 
 import store from '../store/store'
@@ -8,13 +8,24 @@ import firebase from './firebase'
 export const userApi = {
 
     register: (email, password) => {
+        store.dispatch(loginUserInitiated())
         firebase.auth().createUserWithEmailAndPassword(email, password)
-                .then(user=>console.log(user))
-                .catch(err=> console.log(err))
+                        .then(user=>{
+                            store.dispatch(loginUserSuccessful(user))
+                            Actions.home({type: ActionConst.reset})
+                        })
+                        .catch(err=> {
+                            console.log('h')
+                            loginUserFailed('Register Failed, Try Again')
+                        })
     },
     login:(email, password) => {
+        store.dispatch(loginUserInitiated())
         firebase.auth().signInWithEmailAndPassword(email, password)
-                .then(user=>console.log(user.user.email))
-                .catch(err=> console.log(err))
+                .then(user=>{
+                    store.dispatch(loginUserSuccessful(user))
+                    Actions.home({type: ActionConst.reset})
+                })
+                .catch(err=> store.dispatch(loginUserFailed('Login Failed, Try Again')))
     }
 }

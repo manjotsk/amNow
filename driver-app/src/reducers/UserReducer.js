@@ -6,7 +6,8 @@ import {
 
 const INITIAL_STATE = {
     loading: false,
-    message: ''
+    message: '',
+    response: null
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -15,7 +16,8 @@ export default (state = INITIAL_STATE, action) => {
         case LOGIN_USER_INITIATED:
             return {
                 ...state,
-                loading: true
+                loading: true,
+                message: ''
             }
         
         case LOGIN_USER_FAILED:
@@ -29,7 +31,7 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 loading: false,
-                message: action.message
+                response: action.payload
             }
 
         default:

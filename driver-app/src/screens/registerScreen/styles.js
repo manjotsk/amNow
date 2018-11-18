@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native'
+import { Color } from '../../themes';
  
 export default StyleSheet.create({
     container: {
@@ -40,5 +41,10 @@ export default StyleSheet.create({
     linkText: {
         color: 'indigo',
         paddingLeft: 5
+    },
+    error: {
+        color: Color.mustard,
+        alignSelf: 'flex-start',
+        fontSize: 20
     }
 })
