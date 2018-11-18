@@ -23,7 +23,7 @@ Example OUTPUT:
 
 ##SETTING UP
 diseaseclassifier = Trainer(tokenizer) #STARTS CLASIFIERS
-with open("Dataset.csv", "r") as file: #OPENS DATASET
+with open("/Users/tathagatthapliyal/Desktop/MyGems/Projects/alphaQ/kinkyu-sat/server/DiseaseClassifier/Dataset.csv", "r") as file: #OPENS DATASET
     for i in file: #FOR EACH LINE
        lines = file.next().split(",") #PARSE CSV <DISEASE> <SYMPTOM>
        diseaseclassifier.train(lines[1],  lines[0]) #TRAINING
