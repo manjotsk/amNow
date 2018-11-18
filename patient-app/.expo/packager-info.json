@@ -1,9 +1,9 @@
 {
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerPort": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "packagerPort": 19001,
+  "packagerPid": 12644,
+  "expoServerPort": 19000,
+  "expoServerNgrokUrl": "https://tf-68d.manjotsingh.patient-app.exp.direct",
+  "packagerNgrokUrl": "https://packager.tf-68d.manjotsingh.patient-app.exp.direct",
+  "ngrokPid": 1772,
   "devToolsPort": 19005
 }
