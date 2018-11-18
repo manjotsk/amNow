@@ -2,7 +2,8 @@ import React from 'react';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import { TouchableOpacity, View, Text } from 'react-native';
 import MapViewDirections from 'react-native-maps-directions';
-
+// import Expo from 'expo-server-sdk';
+import axios from 'axios';
 import Header from '../../components/header';
 import ambulanceIcon from '../../assets/img/ambulance.png';
 
@@ -22,7 +23,23 @@ export default class App extends React.Component {
     bestAmbulanceLon: 0,
     showPath: false,
   };
+  sendNotification(pushToken) {
+    var headers = {
+      'Content-Type': 'application/json',
+      'accept-encoding': 'gzip, deflate',
+      accept: 'application/json',
+    };
 
+    var data = [
+      {
+        to: 'ExponentPushToken[FYzBh-L6gYtnmoVFYyAzNG]',
+        sound: 'default',
+        body: 'There is an emergency, 1 km east',
+      },
+    ];
+
+    axios.post('https://exp.host/--/api/v2/push/send', data, { headers: headers });
+  }
   async componentDidMount() {
     let userLocation = this.props.navigation.getParam('userLocation');
     let drivers = this.props.navigation.getParam('drivers');
@@ -92,6 +109,7 @@ export default class App extends React.Component {
         key = i;
       }
     }
+
     this.setState(
       {
         bestAmbulanceLat: drivers[key].latlng.latitude,
@@ -122,6 +140,20 @@ export default class App extends React.Component {
                     );
                   })
               : null;
+            firebase
+              .database()
+              .ref(`ambulance/${drivers[key].title}/pushtoken`)
+              .on('value', snapshot => {
+                console.log(snapshot.val());
+                try {
+                  this.sendNotification(snapshot.val().token);
+                  this.setState({
+                    pushToken: snapshot.token,
+                  });
+                } catch (error) {
+                  console.log(error``);
+                }
+              });
           }
         );
       }
