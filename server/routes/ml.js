@@ -9,7 +9,7 @@ router.post("/", (req, res, next) => {
   let objDiseases = {};
   for (let i = 0; i <= symptoms.length; i++) {
     exec(
-      `python /Users/tathagatthapliyal/Desktop/MyGems/Projects/alphaQ/kinkyu-sat/server/DiseaseClassifier/GuessDisease.py ${
+      `python /home/kinkyu-sat/server/DiseaseClassifier/GuessDisease.py ${
         symptoms[i]
       }`,
       (error, stdout, stderr) => {
