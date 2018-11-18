@@ -1,0 +1,9 @@
+{
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerPort": null,
+  "expoServerNgrokUrl": "https://3f-hfe.simbaquartz.patient-app.exp.direct",
+  "packagerNgrokUrl": "https://packager.3f-hfe.simbaquartz.patient-app.exp.direct",
+  "ngrokPid": 28604,
+  "devToolsPort": 19005
+}
