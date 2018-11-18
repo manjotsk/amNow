@@ -13,6 +13,11 @@ export default class App extends React.Component {
     this.registerForPushNotificationsAsync()
   }
 
+  handleNotification = (notification) => {
+    console.log('notification recieved!', notification);
+    this.setState({ notification });
+  }
+
   async  registerForPushNotificationsAsync() {
     const { status: existingStatus } = await Permissions.getAsync(
       Permissions.NOTIFICATIONS
@@ -35,6 +40,7 @@ export default class App extends React.Component {
   
     // Get the token that uniquely identifies this device
     let token = await Notifications.getExpoPushTokenAsync();
+    this.notificationSubscription = Notifications.addListener(this.handleNotification);
     store.dispatch(saveToken(token.toString()))
   
   }

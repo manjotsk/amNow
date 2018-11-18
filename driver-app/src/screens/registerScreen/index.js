@@ -21,6 +21,11 @@ import { loginUserFailed } from '../../actions/userActions';
 
 class RegisterScreen extends React.Component {
 
+    componentDidMount() {
+        if(this.props.response)
+            Actions.maps()
+    }
+
     state = {
         login: true
     }
@@ -136,7 +141,8 @@ class RegisterScreen extends React.Component {
 
 const mapStateToProps =state=> ({
     loading: state.user.loading,
-    message: state.user.message
+    message: state.user.message,
+    response: state.user.response
 })
 
 export default connect(mapStateToProps)(RegisterScreen)

@@ -25,7 +25,10 @@ export const driverApi = {
         return axios({
             method: 'post',
             url: `${API_HOST}/ml`,
-            timeout: 15000
+            timeout: 15000,
+            data: {
+                'symptoms': symptoms
+            }
             })
             .then(response => {
                 console.log(response)

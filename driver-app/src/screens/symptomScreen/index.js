@@ -67,7 +67,7 @@ class SymptomScreen extends React.Component {
 }
 
 const mapStateToProps =state=> ({
-    loading: state.symptom.laoding
+    loading: state.symptom.loading
 })
 
 export default connect(mapStateToProps)(SymptomScreen)

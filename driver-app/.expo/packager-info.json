@@ -1,0 +1,9 @@
+{
+  "expoServerPort": 19000,
+  "expoServerNgrokUrl": "https://bh-72c.simbaquartz.driver-app.exp.direct",
+  "packagerNgrokUrl": "https://packager.bh-72c.simbaquartz.driver-app.exp.direct",
+  "ngrokPid": 24127,
+  "devToolsPort": 19002,
+  "packagerPort": 19003,
+  "packagerPid": 23980
+}
