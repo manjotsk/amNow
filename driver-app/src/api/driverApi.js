@@ -6,10 +6,10 @@ import store from '../store/store'
 const database = firebase.database()
 
 export const driverApi = {
-    addLocation: ()=> {
-        database.ref('ambulance/-LRZnh7TL1odJKlHuDta').set({
-            0: 0.5,
-            1: 1
+    addLocation: (id, latitude, longitude)=> {
+        database.ref(`ambulance/${id}`).set({
+            0: latitude,
+            1: longitude
         })
     }
 }

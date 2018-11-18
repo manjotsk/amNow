@@ -1,6 +1,7 @@
 import React from 'react';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import { TouchableOpacity, View, Text } from 'react-native';
+import {connect} from 'react-redux'
 
 import { Assets } from '../../themes'
 
@@ -9,7 +10,7 @@ import { Location, Permissions } from 'expo';
 import styles from './styles';
 import { driverApi } from '../../api/driverApi'
 
-export default class MapScreen extends React.Component {
+class MapScreen extends React.Component {
 
     state = {
 
@@ -17,7 +18,6 @@ export default class MapScreen extends React.Component {
 
     componentDidMount () {
         this._getLocationAsync()
-        driverApi.addLocation()
     }
 
     _getLocationAsync = async () => {
@@ -33,11 +33,15 @@ export default class MapScreen extends React.Component {
         const location = await Location.watchPositionAsync({
             enableHighAccuracy: true,
             distanceInterval: 3
-          }, newLocation=>this.setState({locationResult:newLocation}))
+          }, newLocation=>{
+            this.setState({locationResult:newLocation})
+            console.log(newLocation)
+            driverApi.addLocation(this.props.id, newLocation.coords.latitude, newLocation.coords.longitude )
+          })
        }
 
   render() {
-      
+      console.log(this.props.id)
     return (
       <React.Fragment>
         {this.state.locationResult?
@@ -89,4 +93,10 @@ export default class MapScreen extends React.Component {
     );
   }
 }
+
+const mapStateToProps =state=> ({
+    id: state.user.response.user.uid
+}) 
+
+export default connect(mapStateToProps)(MapScreen)
   

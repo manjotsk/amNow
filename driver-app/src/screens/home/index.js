@@ -6,6 +6,7 @@ import { Color, Metrics } from '../../themes'
 import styles from './styles'
 import { InfiniteAnimation } from '../../animations' 
 import { Actions } from 'react-native-router-flux';
+import {connect} from 'react-redux'
 
 const swipeoutBtns = [
     {
@@ -42,4 +43,8 @@ class Home extends React.Component {
     }
 }
 
-export default Home
+const mapStateToProps =state=> ({
+    id: state.user.response.user.email
+})
+
+export default connect(mapStateToProps)(Home)
