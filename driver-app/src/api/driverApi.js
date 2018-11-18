@@ -7,7 +7,7 @@ const database = firebase.database()
 
 export const driverApi = {
     addLocation: (id, latitude, longitude)=> {
-        database.ref(`ambulance/${id}`).set({
+        database.ref(`ambulance/${id}/coordinates`).set({
             0: latitude,
             1: longitude
         })
