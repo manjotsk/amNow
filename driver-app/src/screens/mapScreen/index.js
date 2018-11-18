@@ -7,6 +7,7 @@ import { Assets } from '../../themes'
 import { InfiniteAnimation } from '../../animations'
 import { Location, Permissions } from 'expo';
 import styles from './styles';
+import { driverApi } from '../../api/driverApi'
 
 export default class MapScreen extends React.Component {
 
@@ -16,6 +17,7 @@ export default class MapScreen extends React.Component {
 
     componentDidMount () {
         this._getLocationAsync()
+        driverApi.addLocation()
     }
 
     _getLocationAsync = async () => {

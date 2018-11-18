@@ -72,7 +72,7 @@ class RegisterScreen extends React.Component {
                                 show = {true}
                                 />
                                 :
-                                <Text style={styles.text}>Submit</Text>}
+                                <Text style={styles.text}>Login</Text>}
                             </TouchableOpacity>
                             <KeyboardSpacer/>
                             {this.isRegister()}
@@ -80,25 +80,11 @@ class RegisterScreen extends React.Component {
                         <View style={styles.subView}>
                             <TextInput
                                 style={styles.input}
-                                onChangeText={(name) => this.setState({name})}
-                                value={this.state.name}
-                                placeholder='Name'
-                                placeholderTextColor='black'
-                                />
-                            <TextInput
-                                style={styles.input}
                                 onChangeText={(email) => this.setState({email})}
                                 value={this.state.email}
                                 placeholder='Email'
                                 placeholderTextColor='black'
                                 autoCapitalize = 'none'
-                                />
-                            <TextInput
-                                style={styles.input}
-                                onChangeText={(username) => this.setState({username})}
-                                value={this.state.username}
-                                placeholder='Username'
-                                placeholderTextColor='black'
                                 />
                             <TextInput
                                 style={styles.input}
@@ -118,11 +104,12 @@ class RegisterScreen extends React.Component {
                                 />
                             <TouchableOpacity 
                                 onPress={()=>{
-                                    alert('Submit Pressed')
+                                    const { email, password, password1 } = this.state
+                                    password===password1?userApi.register(email, password):null
                                 }}
                                 style={styles.button}
                                 >
-                                {this.state.loading?<ActivityIndicator color="white"/>:<Text style={styles.text}>Submit</Text>}
+                                {this.state.loading?<ActivityIndicator color="white"/>:<Text style={styles.text}>Register</Text>}
                             </TouchableOpacity>
                             <KeyboardSpacer/>
                             {this.isRegister()}
