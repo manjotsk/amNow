@@ -1,9 +1,10 @@
 {
-  "devToolsPort": 19004,
-  "expoServerPort": 19005,
-  "packagerPort": 19006,
-  "packagerPid": 29487,
-  "expoServerNgrokUrl": "https://yz-adt.simbaquartz.nodative-app.exp.direct",
-  "packagerNgrokUrl": "https://packager.yz-adt.simbaquartz.nodative-app.exp.direct",
-  "ngrokPid": 29579
+  "devToolsPort": 19002,
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 15257,
+  "expoServerNgrokUrl": "https://yz-adt.simbaquartz.driver-app.exp.direct",
+  "packagerNgrokUrl": "https://packager.yz-adt.simbaquartz.driver-app.exp.direct",
+  "ngrokPid": 15400
+
 }

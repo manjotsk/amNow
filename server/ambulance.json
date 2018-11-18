@@ -1,0 +1,20 @@
+{
+  "a1": {
+    "coordinates": [0, 0]
+  },
+  "a2": {
+    "coordinates": [2, 1]
+  },
+  "a3": {
+    "coordinates": [1, 3]
+  },
+  "a4": {
+    "coordinates": [4, 2]
+  },
+  "a5": {
+    "coordinates": [10, 4]
+  },
+  "a6": {
+    "coordinates": [4, 8]
+  }
+}

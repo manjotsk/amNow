@@ -1,31 +1,18 @@
 {
-  "name": "loginapp",
-  "version": "1.0.0",
-  "description": "Backend Boilerplate",
-  "main": "app.js",
+  "name": "server",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "author": "Ansh",
-  "license": "ISC",
   "dependencies": {
-    "bcryptjs": "*",
-    "body-parser": "*",
-    "connect-flash": "*",
-    "cookie-parser": "^1.4.1",
-    "cors": "^2.8.5",
-    "express": "*",
-    "express-handlebars": "*",
-    "express-messages": "*",
-    "express-session": "*",
-    "express-validator": "*",
-    "loadash": "^1.0.0",
-    "mongodb": "*",
-    "mongoose": "*",
-    "parse-error": "^0.2.0",
-    "passport": "*",
-    "passport-http": "*",
-    "passport-local": "*"
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "firebase": "^5.5.8",
+    "geolib": "^2.0.24",
+    "http-errors": "~1.6.2",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.0"
   }
 }
