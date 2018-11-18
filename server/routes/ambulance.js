@@ -11,7 +11,7 @@ router.get("/", function(req, res, next) {
     .once("value", async snapshot => {
       console.log(snapshot.val());
       let newArray = [];
-      Object.keys(snapshot.val()).map(ambuName => {
+      await Object.keys(snapshot.val()).map(ambuName => {
         const dist = geolib.getDistance(
           {
             latitude: req.query.latitude,

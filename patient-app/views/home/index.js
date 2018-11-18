@@ -13,6 +13,7 @@ class Home extends React.Component {
     this.state = {
       play: false,
       location: null,
+      distance: 1000,
       drivers: [],
     };
   }
@@ -22,22 +23,31 @@ class Home extends React.Component {
       this.setState({
         play: true,
       });
-      const url = `https://kinkyu.herokuapp.com/kinkyu/api/v1/driver/queryDrivers?long=${
-        this.state.location.coords.longitude
-      }&lat=${this.state.location.coords.latitude}`;
+      const url = `http://172.20.10.5:3000/ambulance?latitude=${
+        this.state.location.coords.latitude
+      }&longitude=${this.state.location.coords.longitude}
+      &distance=${this.state.distance}`;
+      console.log({ url });
+
       setTimeout(() => {
         axios
           .get(url)
           .then(res => {
             const drivers = res.data;
-            this.setState({ drivers, play: false });
-            this.props.navigation.navigate('TrackingScreen', {
-              userLocation: this.state.location,
-              drivers,
-            });
+            if (drivers.length == 0) {
+              alert(`here drivers.length ${this.state.distance}`);
+              this.setState({ play: false, distance: this.state.distance + 3000000 });
+            } else {
+              alert('here navigating');
+              this.setState({ drivers, play: false });
+              this.props.navigation.navigate('TrackingScreen', {
+                userLocation: this.state.location,
+                drivers,
+              });
+            }
           })
           .catch(error => {
-            this.setState({ play: false });
+            this.setState({ play: false, distance: this.state.distance + 500 });
           });
       }, 3000);
     } else {
@@ -60,6 +70,8 @@ class Home extends React.Component {
     }
 
     const location = await Location.getCurrentPositionAsync({});
+    console.log(location);
+
     this.setState({ location });
   };
 
