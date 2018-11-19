@@ -32,7 +32,10 @@ export default class App extends React.Component {
 
     var data = [
       {
-        to: pushToken,
+
+        to: 'ExponentPushToken[FYzBh-L6gYtnmoVFYyAzNG]',
+
+ master
         sound: 'default',
         body: 'There is an emergency, 1 km east',
       },
