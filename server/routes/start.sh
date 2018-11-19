@@ -1,0 +1,1 @@
+python ./DiseaseClassifier/GuessDisease.py cough

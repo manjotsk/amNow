@@ -23,7 +23,9 @@ class Home extends React.Component {
       this.setState({
         play: true,
       });
+
       const url = `http://172.20.10.7:3000/ambulance?latitude=${
+
         this.state.location.coords.latitude
       }&longitude=${this.state.location.coords.longitude}
       &distance=${this.state.distance}`;

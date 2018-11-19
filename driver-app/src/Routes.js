@@ -3,7 +3,8 @@ import React from 'react'
 import {
     RegisterScreen,
     Home,
-    MapScreen
+    MapScreen,
+    SymptomScreen
 } from './screens'
 import { Router, Scene, Stack } from "react-native-router-flux"
 
@@ -15,6 +16,7 @@ class Routes extends React.Component {
               <Scene key="register" component={RegisterScreen} initial/>
               <Scene key="home" component={Home} />
               <Scene key="maps" component={MapScreen} />
+              <Scene key="symptom" component={SymptomScreen} />
             </Stack>
         </Router>
   }
